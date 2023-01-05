@@ -1,3 +1,47 @@
+here i am going to write what process i have followed till now ;
+
+1. npx create-react-app .
+
+2. i am going to use chakra ui in this project
+
+npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+
+3. react-router-dom 
+npm i react-router-dom
+
+4. i will be using react icons here 
+npm i react-icons
+
+5. i will use chart in this use
+npm i chart.js
+
+6. chart for react
+npm i react-chartjs-2
+
+7. i will use axios for fatching data inside this app
+npm i axios
+
+8. made total 3 Components for header 
+
+9. i used cypto api - coingecko crypto api
+
+https://api.coingecko.com/api/v3/coins/list
+
+10. use hooks inside the app (useState , useEffect)
+
+11. for error handing used try and catch block inside the use effect function
+
+12. for fetching data asynchronously used async and await
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +112,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+dm.
