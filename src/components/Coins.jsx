@@ -1,4 +1,4 @@
-import { Button, Container, HStack } from "@chakra-ui/react";
+import { Button, Container, HStack, Radio, RadioGroup } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState }  from "react";
 import { server } from "..";
@@ -15,23 +15,25 @@ const Coins =()=>{
 
     const currencySymbol = (currency === "inr") ? "₹" : (currency === "eur") ? "€"  : "$" ;
 
-    const changePage =(page)=>{
 
+    // i am creating total 132 button here 
+
+    const btns = new Array(132).fill(1);
+
+    const changePage = (page)=>{
         setPage(page);
         setLoading(true);
     }
 
     useEffect(()=>{
 
-        
         const coinsFetch = async()=>{
-
-
-            try{
+            
+           try{
                 const {data} = await axios.get(`${server}/coins/markets?vs_currency=${currency}&page=${page}`);
-                console.log(data);
                 setFetchedData(data);
                 setLoading(false);
+                // console.log(data);
 
             }catch(error){
                 setError(true);
@@ -42,7 +44,9 @@ const Coins =()=>{
 
         coinsFetch();
 
-    },[currency][page] )
+    },[currency,page])
+
+    // LoL, i was making mistake here while passing the depndencies problem was i was giving values in different - different arrayes and i later i realised all the dependencies should pass inside only one array
 
     // error handing inside the new component
 
@@ -55,11 +59,21 @@ const Coins =()=>{
 
 
     return (
+        
         <Container maxW={'container.xl'}>
-
-
             {loading ? <Loader /> :   
-            <HStack flexWrap={'wrap'}>
+            <>
+
+                <RadioGroup p={'8'} value= {currency} onChange={setCurrency} padding = {'8'} >
+                <HStack spacing={'4'} >
+                    <Radio value={'inr'} >INR</Radio>
+                    <Radio value={'eur'} >EUR</Radio>
+                    <Radio value={'usd'} >USD</Radio>
+                </HStack>
+
+            </RadioGroup>
+
+            <HStack flexWrap={'wrap'} justifyContent={'space-evenly'}>
                 { 
                 fetchedData.map((i)=>{
 
@@ -77,13 +91,27 @@ const Coins =()=>{
                          />
                     })
                 }   
-
                 </HStack>
-            }   
+                
+              
+            <HStack w={'full'} overflowX={'auto'} p={'8'} >
 
-            {/* <Button bg={'blackAlpha.900'} color={'white'} onClick = {()=> changePage(2) } >2</Button> */}
+                 {/* {btns.map((item,index)=>{
+                  return  <Button key={index} bg={'blackAlpha.900'} color={'blue'} onClick={()=>{ changePage(index+1)}} >{index+1}</Button>
+                })}  */}
+
+
+                     
+                 {btns.map((item,index)=>{
+                    return  <Button bg={'blackAlpha.900'} color={'Blue'} onClick = {()=>{changePage(index+1)}} key = {index}  > {index+1} </Button>
+
+                })}  
+            </HStack>
+
+
+        </> 
+}
         </Container>
-        
     )
 }
 

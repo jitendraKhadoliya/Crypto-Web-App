@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { server } from '..';
 import ErrorComponent from './ErrorComponent';
-
+import Loader from './Loader';
 
 
 
@@ -26,6 +26,7 @@ const Exchanges = () => {
         // here for randoring purpose i will set it 
         setFetchedData(data);
         // once my data is randored then i will remove loading screen 
+        // console.log(data);
         setLoading(false);
         
       }catch(error){
@@ -80,10 +81,6 @@ const Exchanges = () => {
 }
 
 
-const Loader = ()=>{
-
-  return <div>Loader</div>
-}
 
 const ExchangeCart = ({name , image , trustScore ,trustRank ,siteUrl , yearOfEstablished})=>{
   return (
