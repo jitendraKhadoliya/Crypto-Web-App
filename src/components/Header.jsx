@@ -1,27 +1,39 @@
-import { HStack ,Button } from "@chakra-ui/react";
+import { HStack ,Button, Stack } from "@chakra-ui/react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink,  } from "react-router-dom";
 
 const Header =()=>{
 
     return(
+        <>
 
-        <HStack p={'4'} bg={'blackAlpha.900'} shadow={'base'} marginBottom ={'4'}>
+       
+        <Stack p={'3'} bg={'blackAlpha.900'} shadow={'base'}  flexDirection={'row'}  justifyContent={'space-around'} >
 
-            <Button variant={'unstyled'} color={'white'}>
+        <HStack color={'white'} textTransform={'capitalize'} letterSpacing={'wider'} alignSelf ={'flex-end'} w={'sm'} >
+            <Button variant={'unstyled'} color={'white'} >
+                <NavLink to={"/"}>cryptoRank</ NavLink >
+            </Button>
+        </HStack>
+
+        <HStack justifyContent={'space-around'}  >
+
+            <Button variant={'unstyled'} color={'white'} mr={'1'}  >
                 <Link to="/" >Home</Link>
             </Button>
 
-            <Button variant={'unstyled'} color={'white'}>
+            <Button variant={'unstyled'} color={'white'} mr={'1'}>
                 <Link to='/exchanges'>Exchanges</Link>
             </Button>
 
-            <Button variant={'unstyled'} color={'white'}>
+            <Button variant={'unstyled'} color={'white'} mr={'1'}>
                 <Link to='/coins'>Coins</Link>
             </Button>
-
         </HStack>
 
+        </Stack>
+
+        </>
     )
 }
 

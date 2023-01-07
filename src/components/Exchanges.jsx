@@ -54,7 +54,20 @@ const Exchanges = () => {
     <Container maxW={'container.xl'} >
 
       {loading ? <Loader/> : <>
-            <HStack flexWrap={'wrap'}>
+            <HStack textTransform={'capitalize'} 
+            w={'full'}
+            p={'4'}
+            fontSize={'2xl'}
+            borderBottom = {'8px'}
+            >
+             <Text textAlign={'center'}
+             w={'full'}
+             >
+               See crypto exchanges ranking with their trust score
+              </Text> 
+              
+            </HStack>
+            <HStack flexWrap={'wrap'} justifyContent={'space-evenly'} >
                 {
                 fetchedData.map((i)=>(
 
@@ -86,18 +99,18 @@ const ExchangeCart = ({name , image , trustScore ,trustRank ,siteUrl , yearOfEst
   return (
     <a href={siteUrl} target={"blank"}>
 
-          <VStack w={'52'} shadow={'2xl'} p={'5'}  borderRadius = {'lg'} transition ={"all 0.3s"} m ={'4'} 
+          <VStack w={'52'} bg={'rgb(0 0 0 / 24%)'} shadow={'2xl'} p={'5'}  borderRadius = {'lg'} transition ={"all 0.3s"} m ={'4'} 
           css={{
             "&:hover":{
               transform :"scale(1.1)",
             }
           }}
            >
-              <Image src = {image}   objectFit={'contain'} alt={"Exchange"} />
+              <Image src = {image}   objectFit={'contain'} alt={"CryptoRank Broker logo"} />
               <Text noOfLines = {'1'} > {name}</Text>
               <Heading size={'md'} noOfLines={'1'} >Trust Rank  {trustRank}</Heading>
               <Text noOfLines = {'1'} > Trust Score :{trustScore}</Text>
-              <Text noOfLines={'1'} > Year : {yearOfEstablished}</Text>
+              <Text noOfLines={'1'} > {yearOfEstablished ?  `Year : ${yearOfEstablished}` : `year : Not Available` } </Text>
 
           </VStack>
     </a>

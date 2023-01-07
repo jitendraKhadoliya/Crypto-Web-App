@@ -72,7 +72,7 @@ const CoinDetails = ()=>{
              {/* <Button    for changeing time  */}
              {/* here i am creating an radio button for real time changeing the data */}
 
-             <RadioGroup value={currency} onChange={setCurrency} p={'5'} > 
+             <RadioGroup value={currency} onChange={setCurrency} p={'5'}  > 
                     <HStack spacing={'4'}>
                         <Radio value="inr" >INR</Radio>
                         <Radio value="eur" >EUR</Radio>
@@ -80,13 +80,13 @@ const CoinDetails = ()=>{
                     </HStack>
                 </RadioGroup>
 
-                <VStack spacing={'4'} p={'16'} alignItems={"flex-start"} >
+                <VStack spacing={'4'} p={'16'} alignItems={"flex-start"}  bg={'rgb(0 0 0 / 24%)'} >
 
                     <Text alignSelf={'center'} fontSize={'small'} >
                         Last Updated On {Date(fetchedData.market_data.last_updated).split("G")[0]}
                     </Text>
 
-                    <Image src={fetchedData.image.large} h={'16'} w={'16'} objectFit ={'contain'} />
+                    <Image src={fetchedData.image.large} h={'16'} w={'16'} objectFit ={'contain'} alt={"CryptoRank Coin logo"} />
 
                     {/* now i will give all the statical data here i am taking real values that are name , currencySymbol , and total price change in last 24 hours */}
                     <Stat>

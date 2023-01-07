@@ -7,8 +7,8 @@ const CoinsCart =({image ,symbol,name,price,id, currencySymbol = "₹"})=>{
 
 
     return(
-        <Link to={`/coin/${id}`} >
-                <VStack w={'52'} p={'5'} borderRadius ={'lg'} shadow={'2xl'} margin ={'4'} transition ={'all 0.3s'} 
+        <Link to={`/coin/${id}`}  >
+                <VStack w={'52'} bg={'rgb(0 0 0 / 24%)'}  p={'5'} borderRadius ={'lg'} shadow={'2xl'} margin ={'4'} transition ={'all 0.3s'} 
                     css = {{
                         "&:hover" : {
                             transform : "Scale(1.1)",

@@ -1,10 +1,12 @@
-import { Button, Container, HStack, Radio, RadioGroup } from "@chakra-ui/react";
+import { Button, Container, HStack, Radio, RadioGroup, Text } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState }  from "react";
 import { server } from "..";
 import CoinsCart from "./CoinsCart";
 import ErrorComponent from "./ErrorComponent";
 import Loader from "./Loader";
+
+
 
 const Coins =()=>{
     const[loading, setLoading] = useState(true);
@@ -63,17 +65,31 @@ const Coins =()=>{
         <Container maxW={'container.xl'}>
             {loading ? <Loader /> :   
             <>
+            <HStack textTransform={'capitalize'} 
+            w={'full'}
+            p={'4'}
+            fontSize={'2xl'}
+            borderBottom = {'8px'}
+            >
+             <Text textAlign={'center'}
+             w={'full'}
+             >
+               Get real-time market data for cryptocurrencies
+              </Text> 
+              </HStack>
+            
 
-                <RadioGroup p={'8'} value= {currency} onChange={setCurrency} padding = {'8'} >
-                <HStack spacing={'4'} >
-                    <Radio value={'inr'} >INR</Radio>
-                    <Radio value={'eur'} >EUR</Radio>
-                    <Radio value={'usd'} >USD</Radio>
+                <RadioGroup p={'4'} value= {currency} onChange={setCurrency} padding = {'8'}   >
+                <HStack spacing={'4'} fontSize={'xl'} >
+                    <Text>{`Change Currency > `} </Text>
+                    <Radio value={'inr'} >{`₹ INR`}</Radio>
+                    <Radio value={'eur'} >{`€ EUR`}</Radio>
+                    <Radio value={'usd'} >{`$ USD`}</Radio>
                 </HStack>
-
+               
             </RadioGroup>
 
-            <HStack flexWrap={'wrap'} justifyContent={'space-evenly'}>
+            <HStack flexWrap={'wrap'} justifyContent={'space-evenly'} >
                 { 
                 fetchedData.map((i)=>{
 
