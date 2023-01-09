@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import ErrorComponent from "./ErrorComponent";
 import { Badge, Box, Container, HStack, Image, Progress, Radio, RadioGroup, Stat, StatArrow, StatHelpText, StatLabel, StatNumber, Text, VStack } from "@chakra-ui/react";
 import Loader from "./Loader";
+import Chart from "../components/Chart";
 
 
 
@@ -20,6 +21,8 @@ const CoinDetails = ()=>{
     const [error,setError] = useState(false);
     const [loading,setLoading] = useState(true);
     const [currency, setCurrency] = useState("inr");
+    const [days , setDays] = useState("24h");
+    const [chartArray , setChartArray ] = useState([])
 
 
     const params = useParams();
@@ -34,10 +37,18 @@ const CoinDetails = ()=>{
         const coinFetch = async ()=>{
 
             try{
+                // here we are fetching data of coins 
                 const {data} = await axios.get(`${server}/coins/${params.id}`)
-                
-                console.log(data);
+
+                // here we will fetch data of coin chart data 
+
+                const { data : chartData } =  await axios.get(`${server}/coins/${params.id}/market_chart?vs_currency=${currency}&days=${days}`)
+
+                // i am setting here chartData.prices because i want only prices and dates data
+                // console.log(chartArray);
                 setFetchedData(data);
+                setChartArray(chartData.prices);
+                console.log(chartArray);
                 setLoading(false);
                 
 
@@ -50,7 +61,7 @@ const CoinDetails = ()=>{
 
         coinFetch();
 
-    },[params.id])
+    },[params.id, currency ,days ])
 
 
     if(error){
@@ -65,7 +76,12 @@ const CoinDetails = ()=>{
             <>
 
             <Box width={'full'} borderWidth={'4'}>
-                sdkjljad
+
+                {/* here i am creating chart for it */}
+                <Chart 
+                arr={chartArray}
+                currency={currencySymbol}
+                />
             </Box>
 
 
