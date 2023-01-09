@@ -20,33 +20,25 @@ import { Chart as ChartJS,
     Legend
     );
 
-// 6:15
+
 
 const Chart = ({arr =[] ,days , currency })=>{
 
-    console.log("chart componet array" ,arr);
     const dates = [];
     const prices = [];
 
 
     for(let i=0; i< arr.length; i++ ){
-
-        
-        dates.push(new Date(arr[i][0]).toLocaleDateString() );
-        prices.push(arr[i][1])
-        // console.log(dates);
+        if(days === "4h" ) { 
+            dates.push(new Date(arr[i][0]).toLocaleTimeString());
+        }else{
+            dates.push(new Date(arr[i][0]).toLocaleDateString());
+        }
+            
+        prices.push(arr[i][1]);
     }
 
-    // console.log(prices);
-
-
-
-    return <Line 
-    options={{
-        responsive : true,
-    }}
-
-    data= {{
+    const data ={
 
         labels : dates, 
         datasets : [
@@ -54,11 +46,21 @@ const Chart = ({arr =[] ,days , currency })=>{
                 label : `price in ${currency}`,
                 data : prices,
                 borderColor : 'red',
-                // backgroundColor : "white" 
+                backgroundColor : "white" 
             }
         ]
     }
-    }
+
+    // here i am using line chart
+
+    return <Line 
+    options={{
+        responsive : true, 
+        radius : 1,
+        
+    }}
+
+    data= {data}
      />
 }
 

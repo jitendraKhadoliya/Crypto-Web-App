@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { server } from "..";
 import { useParams } from "react-router-dom";
 import ErrorComponent from "./ErrorComponent";
-import { Badge, Box, Container, HStack, Image, Progress, Radio, RadioGroup, Stat, StatArrow, StatHelpText, StatLabel, StatNumber, Text, VStack } from "@chakra-ui/react";
+import { Badge, Box, Button, Container, HStack, Image, Progress, Radio, RadioGroup, Stat, StatArrow, StatHelpText, StatLabel, StatNumber, Text, VStack } from "@chakra-ui/react";
 import Loader from "./Loader";
 import Chart from "../components/Chart";
 
@@ -17,18 +17,60 @@ import Chart from "../components/Chart";
 const CoinDetails = ()=>{
     
     // here i am going to create all states
+    const params = useParams();
     const [fetchedData, setFetchedData] = useState({});
     const [error,setError] = useState(false);
     const [loading,setLoading] = useState(true);
     const [currency, setCurrency] = useState("inr");
-    const [days , setDays] = useState("24h");
+    const [days , setDays] = useState("4h");
     const [chartArray , setChartArray ] = useState([])
-
-
-    const params = useParams();
-
+    const [timeframe , setTimeframe] = useState("4h")
+   
     const currencySymbol = (currency === "inr") ? "₹" : (currency === "eur") ? "€"  : "$" ;
 
+    const allBtns = ["4h","8h","24h","30d","60d","6m","1y","all"]
+
+
+    const switchstate =  (key)=>{
+            setTimeframe(key);
+       switch (key) {
+        case "4h": setDays("4h");
+        setLoading(true);
+         break;
+        case "8h": setDays("8h");
+        setLoading(true);
+         break;
+        case "24h": setDays("24h");
+        setLoading(true);
+         break;
+        case "30d": setDays("30d");
+        setLoading(true);
+         break;
+        case "60d": setDays("60d");
+        setLoading(true);
+         break;
+        case "6m": setDays("180d");
+        setLoading(true);
+         break;
+        case "1y": setDays("365d");
+        setLoading(true);
+         break;
+        case "all": setDays("max");
+        setLoading(true);
+         break;
+       
+        default:setDays("4h");
+        setLoading(true);
+            break;
+       }
+
+       return(
+        <HStack>
+
+        </HStack>
+       )
+
+    }
 
 
 
@@ -48,21 +90,20 @@ const CoinDetails = ()=>{
                 // console.log(chartArray);
                 setFetchedData(data);
                 setChartArray(chartData.prices);
-                console.log(chartArray);
                 setLoading(false);
                 
-
+                
             }catch(error){  
                 setError(true);
                 setLoading(false); 
             }
-
+            
         }
-
+        
         coinFetch();
-
-    },[params.id, currency ,days ])
-
+        
+    },[params.id, currency ,days,timeframe])
+    
 
     if(error){
         return  <ErrorComponent message={"something went wrong while fetching coin details data component"} />
@@ -81,11 +122,32 @@ const CoinDetails = ()=>{
                 <Chart 
                 arr={chartArray}
                 currency={currencySymbol}
+                days ={days}
                 />
             </Box>
 
 
+
              {/* <Button    for changeing time  */}
+
+             <HStack p={'4'} wrap={'wrap'} >
+                 {/* here i am showing which timeframe i am on */}
+                 <Text fontSize={'2xl'} pr={'2'} borderRight ={'2px'} >your current timeframe is - {timeframe}</Text>
+
+                {allBtns.map((singlebtn)=>{
+                  return  <Button key={singlebtn} variant={'ghost'} onClick={()=>(
+                       
+                      switchstate(singlebtn) 
+                  )
+            
+                } 
+                    >{singlebtn}</Button>
+                })}
+
+
+             </HStack>
+            
+
              {/* here i am creating an radio button for real time changeing the data */}
 
              <RadioGroup value={currency} onChange={setCurrency} p={'5'}  > 
@@ -131,9 +193,11 @@ const CoinDetails = ()=>{
                      />
 
                      {/* after creating custom bar i will create value here for supply where i am going to show max supply */}
+                   
 
                      <Box w={'full'} p={'4'}  >
-                        <Item title ={"Max Supply"} value={fetchedData.market_data.max_supply} />
+                   
+                        <Item title ={"Max Supply"} value={fetchedData.market_data.max_supply}  />
                         <Item title ={"Circulating Supply"} value={fetchedData.market_data.circulating_supply} />
                         <Item title ={"Market Cap"} value={`${currencySymbol} ${fetchedData.market_data.market_cap[currency]}`} />
                         <Item title ={"All Time Low"} value={`${currencySymbol} ${fetchedData.market_data.atl[currency]}`} />

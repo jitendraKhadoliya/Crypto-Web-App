@@ -103,6 +103,7 @@ const Coins =()=>{
                         name = {i.name} 
                         price ={i.current_price}
                         currencySymbol = {currencySymbol}
+                       
 
                          />
                     })
@@ -111,12 +112,6 @@ const Coins =()=>{
                 
               
             <HStack w={'full'} overflowX={'auto'} p={'8'} >
-
-                 {/* {btns.map((item,index)=>{
-                  return  <Button key={index} bg={'blackAlpha.900'} color={'blue'} onClick={()=>{ changePage(index+1)}} >{index+1}</Button>
-                })}  */}
-
-
                      
                  {btns.map((item,index)=>{
                     return  <Button bg={'blackAlpha.900'} color={'Blue'} onClick = {()=>{changePage(index+1)}} key = {index}  > {index+1} </Button>
