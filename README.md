@@ -33,6 +33,15 @@ https://api.coingecko.com/api/v3/coins/list
 
 12. for fetching data asynchronously used async and await
 
+13. react pagination
+
+seo friendly sub Headings ->
+
+"Get real-time market data for top cryptocurrencies"
+"See the latest coin rankings and price changes"
+"Discover the latest crypto market trends"
+"Make informed investment decisions with our comprehensive analysis"
+"Find out why CryptoRank is the go-to source for crypto enthusiasts everywhere"
 
 
 

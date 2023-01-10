@@ -31,54 +31,44 @@ const CoinDetails = ()=>{
     const allBtns = ["4h","8h","24h","30d","60d","6m","1y","all"]
 
 
+
+    
     const switchstate =  (key)=>{
-            setTimeframe(key);
-       switch (key) {
-        case "4h": setDays("4h");
-        setLoading(true);
-         break;
-        case "8h": setDays("8h");
-        setLoading(true);
-         break;
-        case "24h": setDays("24h");
-        setLoading(true);
-         break;
-        case "30d": setDays("30d");
-        setLoading(true);
-         break;
-        case "60d": setDays("60d");
-        setLoading(true);
-         break;
-        case "6m": setDays("180d");
-        setLoading(true);
-         break;
-        case "1y": setDays("365d");
-        setLoading(true);
-         break;
-        case "all": setDays("max");
-        setLoading(true);
-         break;
-       
-        default:setDays("4h");
-        setLoading(true);
-            break;
-       }
+        setTimeframe(key);
+   switch (key) {
+    case "4h": setDays("4h");
+     break;
+    case "8h": setDays("8h");
+      break;
+    case "24h": setDays("24h");
+      break;
+    case "30d": setDays("30d");
+      break;
+    case "60d": setDays("60d");
+      break;
+    case "6m": setDays("180d");
+      break;
+    case "1y": setDays("365d");
+      break;
+    case "all": setDays("max");
+      break;
+   
+    default:setDays("4h");
+          break;
+   }
 
-       return(
-        <HStack>
 
-        </HStack>
-       )
-
-    }
-
+}
 
 
     useEffect(()=>{
 
+        // here i am doing for testing purpose
+        
         const coinFetch = async ()=>{
 
             try{
+                setLoading(true);
                 // here we are fetching data of coins 
                 const {data} = await axios.get(`${server}/coins/${params.id}`)
 
@@ -102,7 +92,7 @@ const CoinDetails = ()=>{
         
         coinFetch();
         
-    },[params.id, currency ,days,timeframe])
+    },[params.id, currency ,days,timeframe ])
     
 
     if(error){
@@ -115,7 +105,7 @@ const CoinDetails = ()=>{
 
         {loading ? <Loader /> :(
             <>
-
+             
             <Box width={'full'} borderWidth={'4'}>
 
                 {/* here i am creating chart for it */}
@@ -158,7 +148,10 @@ const CoinDetails = ()=>{
                     </HStack>
                 </RadioGroup>
 
-                <VStack spacing={'4'} p={'16'} alignItems={"flex-start"}  bg={'rgb(0 0 0 / 24%)'} >
+
+
+
+                <VStack spacing={'4'} p={'16'} alignItems={"flex-start"} bg={'rgb(252,211,76)'} >
 
                     <Text alignSelf={'center'} fontSize={'small'} >
                         Last Updated On {Date(fetchedData.market_data.last_updated).split("G")[0]}

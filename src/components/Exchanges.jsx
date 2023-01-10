@@ -99,7 +99,7 @@ const ExchangeCart = ({name , image , trustScore ,trustRank ,siteUrl , yearOfEst
   return (
     <a href={siteUrl} target={"blank"}>
 
-          <VStack w={'52'} bg={'rgb(0 0 0 / 24%)'} shadow={'2xl'} p={'5'}  borderRadius = {'lg'} transition ={"all 0.3s"} m ={'4'} 
+          <VStack w={'52'} bg ={'rgb(252,211,76)'}  shadow={'2xl'} p={'5'}  borderRadius = {'lg'} transition ={"all 0.3s"} m ={'4'} 
           css={{
             "&:hover":{
               transform :"scale(1.1)",
