@@ -1,5 +1,9 @@
 here i am going to write what process i have followed till now ;
 
+I am planing the name for this app is cryptoRank 
+
+the proccess i am following for creating this app
+
 1. npx create-react-app .
 
 2. i am going to use chakra ui in this project
@@ -35,6 +39,70 @@ https://api.coingecko.com/api/v3/coins/list
 
 13. react pagination
 
+14. created coin datil page where all the coin details i am fething it using axios and showing them 
+and created radio button for changing curreny data and put it inside coin currency also 
+
+
+15. for staticis i used <Stat> from chakra ui and defined all the data of coin details like 
+    coin name 
+    coin symbol
+    current price
+
+16. created <Badge>   section for showing rank for coin 
+
+17. created custom bar which acutally creating, for this i created special componet for more readbility and less compexicity
+        one side low of coin in last 24 hour 
+        second side it's showing high in last 24 hour 
+        and used 
+
+
+18. after that used Box that is same as div in cakhra ui inside this i am shoing real time data From server for coin like 
+    to save coding more i used here componet named as <Item> where i am taking title name with value ,inside value i also set the check property value is availble or not it is then show the value iother wise show NaN 
+        max supply of the coin with changable currency symbol
+        coin's circulating supply 
+        coin's market cap
+        all time low
+        all time high
+
+19. added chartjs and line chart from react-chart-js
+
+20.  here i am fetching data chartdata is the name that i am taking in place of data because it will create 2 constant at the time 
+here useParam() for url id 
+const { data : chartData } =  await axios.get(`${server}/coins/${params.id}/market_chart?vs_currency=${currency}&days=${days}`)
+
+21. made 2 empty array one for date and second for prices and then using map method pushed data into this array for showcasing chart sended all data to Chart component
+
+22. created buttons for changing timefamre and used switch case method for onChange effect time frame and also showed in which time frame you are write now 
+
+Error ->
+(earlier i was facing error here because i used now setLoading(true) after clicking on changetimeframe button but problem that i was facing was once we click same button again then it will not randor again because data is not changed but setLoading goes ture and for it solution i removed that loading from there and placed setloading inside the useEffect hook and at the end done false after fetching data this is how i solved this problem  )
+
+
+23. now i am creating here is home page where for theme i am setting blackalfha color in background in my whole app and seeting crypto coin image with almost 85vh 
+
+24. and here i created beautiful animation where my image is shifting up and down for infinite time to do that i am going to use motion from framer-motion 
+        done animate on 20px 
+        and in transition i gave duration repeat repeattype reverse
+
+25. created footer page and set it inside the route in app.js page because now it will see on everypage component 
+
+26. inside the footer page in stack (div that is already flex) tag created 2 vstack (already flexed with direction of column)
+
+27. first Vstack i created about us with nice description about page 
+
+28. in second Vstack i created Avatar,Link,text from chakra ui
+        in avatar i seted my profile pic using href from my linkedin post 
+        in Link tage i gave my linkedIn profile account 
+        in text section i gave founder 
+
+29. in last at header section i changed all look for my web page and gave golden color
+
+30. after that gave whole page to golden color for setting up theme for match theme i created golden and black color in whole my web app
+
+31. for live deployment i am going to use varcel app for hosting it for free, created account in varcel app for linked it to my github page and now lookes like everything is fine now i can deploy it
+
+
+
 seo friendly sub Headings ->
 
 "Get real-time market data for top cryptocurrencies"
@@ -42,12 +110,6 @@ seo friendly sub Headings ->
 "Discover the latest crypto market trends"
 "Make informed investment decisions with our comprehensive analysis"
 "Find out why CryptoRank is the go-to source for crypto enthusiasts everywhere"
-
-
-
-
-
-
 
 
 

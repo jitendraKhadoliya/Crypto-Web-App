@@ -57,7 +57,6 @@ const CoinDetails = ()=>{
           break;
    }
 
-
 }
 
 
