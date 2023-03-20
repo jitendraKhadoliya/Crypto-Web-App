@@ -19,7 +19,7 @@ const Footer = () => {
 
             <VStack  w={['full','40%']} >
                     <Avatar boxSize={'28'} mt={['4','2']} src= {avatarSrc} />
-                    <Link color={'rgb(252,211,76)'} h={'none'} target={'blank'}  href={'https://www.linkedin.com/in/jitendrakhadoliya/'} textTransform={'capitalize'} >Jitendra khadoliya</Link>                    
+                    <Link color={'rgb(252,211,76)'} h={'none'} target={'blank'}  href={'https://media.licdn.com/dms/image/C5603AQFGaw-wcD5h1A/profile-displayphoto-shrink_800_800/0/1616858244853?e=2147483647&v=beta&t=Kpm7KIuKEBnlHs79GuREB0A9TmezPj7go0KOcWBN5s0'} textTransform={'capitalize'} >Jitendra khadoliya</Link>                    
                     <Text h={'auto'} fontWeight={'bold'} letterSpacing={'wider'}> Founder </Text>
             </VStack>
 
